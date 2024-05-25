@@ -1,11 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.junit.Assert.assertEquals;
 
 public class LoginPage extends BasePage {
 
@@ -14,17 +10,37 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
 
         super(driver);
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 30);
     }
 
-    @FindBy(xpath = "//a[text()='Food']")
-    private WebElement foodMenu;
+    //place for locators and methods
+    @FindBy(css=".svg-inline--fa.fa-sign-in-alt.fa-w-16")
+    WebElement createAnAccont;
+    public void clickCreateAnAccount() {
+        createAnAccont.click();}
+    @FindBy(id = "user-name")
+    private WebElement userNameField;
 
+    public void setUsernameField() {
+        userNameField.sendKeys("Bobita");}
 
+    @FindBy (id = "password")
+    private WebElement passwordField;
 
-
-    public void getFoodMenu() {
-        foodMenu.click();
+    public void setPasswordField(){
+        passwordField.sendKeys("Parola");
     }
 
+    @FindBy (className="btn-primary")
+    private WebElement loginButton;
+    public void clickLogin() {
+        loginButton.click();
+    }
+
+    @FindBy (linkText = "Incorrect username or password!")
+    private WebElement incorrectPassword;
+
+    public WebElement getIncorrectPassword (){
+        return incorrectPassword ;
+    }
 }

@@ -1,53 +1,40 @@
-import org.junit.Test;
-import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertEquals;
 
+
+@Listeners(ExtentTestNGITestListener.class)
 
 public class CheckoutTest extends Hooks {
 
     public CheckoutPage checkoutPage;
     public WebDriverWait wait;
 
-    @Before
+    @BeforeMethod
     public void SetupPageObject() {
         checkoutPage = new CheckoutPage(driver);
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test
-    public void checkoutAsAGuestTest() throws InterruptedException {
-        checkoutPage.addItemToCart();
-        checkoutPage.cartInfo();
-        checkoutPage.clickGuest();
-        checkoutPage.checkoutMandatoryFields();
-        checkoutPage.checkoutContinueButtons();
-        checkoutPage.assertTextWhenReady(checkoutPage.subTitleElement, "THANK YOU FOR YOUR PURCHASE!");
+    @Test(description="Test the search")
+    public void checkoutTest() throws InterruptedException {
+        checkoutPage.clickAddProductGraniteChipsToCartLink();
+
+
     }
 
-    @Test
-    public void checkFirstNameMandatoryFieldTest() {
-        checkoutPage.fillMandatoryFieldsExcept(checkoutPage.firstname);
-        checkoutPage.assertTextWhenReady(checkoutPage.requiredFirstName, "This is a required field.");
+    @Test(description = "Test the search function by searching how many products containes Chair")
+    public void searchTest()  throws InterruptedException{
+        checkoutPage.searchBar();
+        checkoutPage.clickSearchButton();
+        assertEquals("Awesome Metal Chair", checkoutPage.getMetalChair().getText());
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The test searches how many products are chair");
     }
-
-    @Test
-    public void checkLastNameMandatoryFieldTest() {
-        checkoutPage.fillMandatoryFieldsExcept(checkoutPage.lastname);
-        checkoutPage.assertTextWhenReady(checkoutPage.requiredLastName, "This is a required field.");
-    }
-
-    @Test
-    public void checkAddressMandatoryFieldTest(){
-     //   checkoutPage.fillMandatoryFieldsExcept(checkoutPage.address);
-    }
-
-
-
 
 
 
