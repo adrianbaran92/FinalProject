@@ -1,8 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -16,7 +14,6 @@ public class CheckoutPage extends BasePage {
         wait = new WebDriverWait(driver, 30);
     }
 
-//place for locators and methods
     @FindBy(linkText = "Awesome Granite Chips")
     private WebElement addProductGraniteChipsToCartLink;
 
@@ -44,7 +41,6 @@ public class CheckoutPage extends BasePage {
         return metalChair;
     }
 
-// de aici incep restul
 
     @FindBy(linkText = "Refined Frozen Mouse")
     private WebElement FrozenMouse;
@@ -52,14 +48,10 @@ public class CheckoutPage extends BasePage {
 
     public WebElement getFrozenMouse() {
         return FrozenMouse;
-
-
     }
-
 
     @FindBy(linkText = "Practical Metal Mouse")
     private WebElement MetalMouse;
-
 
     public WebElement getMetalMouse() {
         return MetalMouse;
@@ -120,11 +112,6 @@ public class CheckoutPage extends BasePage {
         return Double.parseDouble(cleanTotalValue);
     }
 
-
-
-
-
-
     @FindBy (css = ".svg-inline--fa.fa-plus-circle.fa-w-16")
     private WebElement plusQuantity;
 
@@ -132,18 +119,13 @@ public class CheckoutPage extends BasePage {
     public void clickQuantity(){
         plusQuantity.click();
 
-
     }
     public double ProductPrice(){
         String amountvalue = totalAmount.getText();
         String cleanamountvalue = amountvalue.replace("$", "");
         return Double.parseDouble(cleanamountvalue);
 
-
-
-
     }
-
 
     @FindBy(css = ".svg-inline--fa.fa-shopping-cart.fa-w-18")
     private WebElement cartButton;
@@ -246,8 +228,7 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css =".svg-inline--fa.fa-trash.fa-w-14 ")
     public WebElement trashButton;
-
-
+    
     public void clicktrashButton() {trashButton.click();
     }
 

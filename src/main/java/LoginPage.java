@@ -4,8 +4,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-
-
 public class LoginPage extends BasePage {
 
 
@@ -27,9 +25,6 @@ public class LoginPage extends BasePage {
     public void clickCreateAnAccount() {
         createAnAccount.click();
     }
-
-
-
 
     @FindBy(id = "user-name")
     private WebElement userNameField;
@@ -94,8 +89,6 @@ public class LoginPage extends BasePage {
     WebElement header3Text;
 
 
-
-
     @FindBy(tagName = "h1")
     WebElement headerText;
 
@@ -115,10 +108,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "(//span[.='Hello guest! '])")
     public WebElement helloGuest;
 
-
-
-
-}
+    @FindBy (id = "password")
+    private WebElement setPasswordCorrectCaps;
+    public void setPasswordCorrectCaps(){setPasswordCorrect.sendKeys("CHOOCHOO");}
+    }
 
 
 

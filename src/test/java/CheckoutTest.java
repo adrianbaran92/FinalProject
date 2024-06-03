@@ -1,20 +1,9 @@
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import org.bouncycastle.asn1.dvcs.DVCSObjectIdentifiers;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-
-import java.io.ObjectInputStream;
-
-
 import static org.testng.AssertJUnit.assertEquals;
 
 
@@ -31,11 +20,11 @@ public class CheckoutTest extends Hooks {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test(description="Test the search")
+    @Test(description="Select a product")
     public void checkoutTest() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         checkoutPage.clickAddProductGraniteChipsToCartLink();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
     }
 
@@ -47,9 +36,7 @@ public class CheckoutTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "The test searches how many products are chair");
     }
 
-// de aici incep restul
-
-    @Test(description = "Calculating the price when changing the quantity ")
+    @Test(description = "Calculating the price when the quantity is changed ")
     public void quantityOfAProductTest() throws InterruptedException {
         checkoutPage.clickAwesomeGraniteChipsToCartLink();
         Thread.sleep(3000);
@@ -62,7 +49,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickQuantity();
         Thread.sleep(3000);
         assertEquals(checkoutPage.ProductPrice(), expectedTotal);
-        ExtentTestNGITestListener.getTest().log(Status.INFO, "The prices match");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The prices is correct");
     }
 
 
@@ -83,10 +70,10 @@ public class CheckoutTest extends Hooks {
 
     @Test(description = "Sorting products from Z-A")
     public void sortZa(){
-        assertEquals("Sort by name (A to Z)", checkoutPage.optionAZ.getText());
+        assertEquals("Sort name (A to Z)", checkoutPage.optionAZ.getText());
         checkoutPage.clickSortDropdown();
         checkoutPage.clickOptionZA();
-        assertEquals("Sort by name (Z to A)", checkoutPage.optionZA.getText());
+        assertEquals("Sort name (Z to A)", checkoutPage.optionZA.getText());
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Sortare: " + checkoutPage.optionZA.getText());
     }
 
@@ -140,7 +127,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickFavoritesButton();
         checkoutPage.clickResetAppButton();
         ExtentTest log = ExtentTestNGITestListener.getTest().log(Status.INFO, "Navigare de pe pagina Products pe  " + checkoutPage.headerText.getText());
-        ExtentTestNGITestListener.getTest().log(Status.INFO, "Resetare aplicatiei");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Resetarea aplicatiei");
     }
 
 
@@ -233,8 +220,6 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clicktrashButton();
         assertEquals("Your cart", checkoutPage.headerText.getText());
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Awesome Granite Chips was detele from cart");
-
-
 
 
     }

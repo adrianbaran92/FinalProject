@@ -1,12 +1,5 @@
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import org.bouncycastle.asn1.dvcs.DVCSObjectIdentifiers;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -28,7 +21,7 @@ public class LoginTest extends Hooks {
         wait = new WebDriverWait(driver, 30);
     }
 
-    
+
 
     @Test(description = "Login test for invalid user")
     public void loginTest() throws InterruptedException {
@@ -67,16 +60,25 @@ public class LoginTest extends Hooks {
     }
 
 
-    @Test(description = "Access the user credentials from Help Button")
+    @Test(description = "Check users credentials from Help Button")
     public void accessUserCredentials() throws InterruptedException {
         assertEquals("Products",loginPage.headerText.getText());
         loginPage.clickHelpButton();
+        Thread.sleep(4000);
         assertEquals("Valid usernames", loginPage.header3Text.getText());
         loginPage.clickCloseButton();
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         assertEquals("Products",loginPage.headerText.getText());
     }
+    @Test (description = "Login with correct user and UPPERCASE LETTERS FOR CORRECT PASSWORD")
+    public void successLoginCapsLetters () throws InterruptedException {
+        loginPage.clickCreateAnAccount();
+        Thread.sleep(1000);
+        loginPage.setUserNameCorrect();
+        loginPage.setPasswordCorrectCaps();
+        loginPage.clickLogin();
+        assertEquals("Hello guest!", loginPage.helloGuest.getText());
 
-
+    }
 }
 
