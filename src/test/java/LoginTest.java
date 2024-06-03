@@ -10,11 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-
 import static org.testng.AssertJUnit.assertEquals;
-
-
 
 
 @Listeners(ExtentTestNGITestListener.class)
@@ -26,15 +22,13 @@ public class LoginTest extends Hooks {
     public LoginPage loginPage;
     public WebDriverWait wait;
 
-
     @BeforeMethod
     public void SetupPageObject() {
         loginPage = new LoginPage(driver);
         wait = new WebDriverWait(driver, 30);
     }
 
-
-
+    
 
     @Test(description = "Login test for invalid user")
     public void loginTest() throws InterruptedException {
