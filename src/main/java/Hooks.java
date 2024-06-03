@@ -1,36 +1,23 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class Hooks {
 
     public WebDriver driver;
 
-    private ExtentSparkReporter extentSparkReporter;
-
-    public ExtentReports extentReports;
-
-    public static ExtentTest extentTest;
-
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
-
-
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Baran Adrian\\Desktop\\Final Project _Adrian\\Final_Project_Adrian\\src\\main\\resources\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("https://fasttrackit-test.netlify.app/#/");
-
     }
-    
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         driver.quit();
-
     }
 }
